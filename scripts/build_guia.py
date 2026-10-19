@@ -36,6 +36,12 @@ css += """
   .sk .exq p{margin:.25em 0} .sk .exq b{font-family:Sora;font-size:.82rem;color:var(--mut)}
   .sk .warn{border-left-color:#ef4444}
   .sk .refs a{margin-right:14px;font-weight:600}
+  .chart{margin:0;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px 18px 10px;overflow-x:auto}
+  .chart svg{width:100%;min-width:520px;display:block} .chart figcaption{color:var(--mut);font-size:.82rem;margin-top:8px}
+  .chart .mk{fill:var(--amb)} .chart .hit{fill:transparent} .chart .bar:hover .mk{opacity:.8} .chart .bar:hover .lb{fill:var(--txt);font-weight:600}
+  .chart .lb{fill:var(--mut);font:13px Inter,sans-serif} .chart .vl{fill:var(--txt);font:600 13px Sora,sans-serif}
+  .tbl{margin-top:12px;color:var(--mut);font-size:.9rem} .tbl summary{cursor:pointer;color:var(--amb)} .tbl table{border-collapse:collapse;margin-top:8px}
+  .tbl td,.tbl th{border-bottom:1px solid var(--line);padding:4px 14px 4px 0;text-align:left}
   .vid{display:grid;grid-template-columns:1.4fr .6fr;gap:18px} @media(max-width:760px){.vid{grid-template-columns:1fr}}
   .vid iframe{width:100%;aspect-ratio:16/9;border:0;border-radius:14px} .vid .v916 iframe{aspect-ratio:9/16}
 """
@@ -67,6 +73,7 @@ T = {
               "git clone https://github.com/inematds/skills15.git && cd skills15\n./scripts/instalar.sh          # lista as 15\n./scripts/instalar.sh 12       # mostra como instalar a #12\n./scripts/instalar.sh 12 --executar"),
              ("Teste numa tarefa real", "Faça a mesma tarefa com e sem a skill. Não melhorou? Desinstale.", None)],
    "vid_chip": "Vídeos", "vid_h": "As 15 explicadas", "vid_sub": "O vídeo completo detalha cada uma; o curto cita as 15 em menos de um minuto.",
+   "g_chip": "Em números", "g_h": "Estrelas no GitHub", "g_sub": "Quantas estrelas cada projeto tinha em 18/10/2026 (a #11 é um post do Reddit e fica de fora). Estrela mede popularidade, não qualidade.", "g_tab": "Ver como tabela", "g_c1": "Skill", "g_c2": "Estrelas", "g_nota": "Passe o mouse ou toque numa barra para ver o número exato.",
    "foot": "catálogo grátis · textos MIT, cada skill com a licença do projeto original"},
  "en": {"lang": "en", "cat": "catalogo.en.json", "pfx": "../", "dir": "en/",
    "title": "skills15 — the 15 Claude skills worth installing",
@@ -94,6 +101,7 @@ T = {
               "git clone https://github.com/inematds/skills15.git && cd skills15\n./scripts/instalar.sh          # lists the 15\n./scripts/instalar.sh 12       # shows how to install #12\n./scripts/instalar.sh 12 --executar"),
              ("Test it on a real task", "Do the same task with and without the skill. No better? Uninstall it.", None)],
    "vid_chip": "Videos", "vid_h": "The 15 explained (in Portuguese)", "vid_sub": "The full video details each one; the short one names all 15 in under a minute.",
+   "g_chip": "By the numbers", "g_h": "GitHub stars", "g_sub": "How many stars each project had on 10/18/2026 (#11 is a Reddit post and is left out). Stars measure popularity, not quality.", "g_tab": "Show as a table", "g_c1": "Skill", "g_c2": "Stars", "g_nota": "Hover or tap a bar to see the exact number.",
    "foot": "free catalog · text MIT, each skill under its original project's license"},
  "es": {"lang": "es", "cat": "catalogo.es.json", "pfx": "../", "dir": "es/",
    "title": "skills15 — las 15 skills para Claude que valen la pena",
@@ -121,6 +129,7 @@ T = {
               "git clone https://github.com/inematds/skills15.git && cd skills15\n./scripts/instalar.sh          # lista las 15\n./scripts/instalar.sh 12       # muestra cómo instalar la #12\n./scripts/instalar.sh 12 --executar"),
              ("Pruébala en una tarea real", "Haz la misma tarea con y sin la skill. ¿No mejoró? Desinstálala.", None)],
    "vid_chip": "Videos", "vid_h": "Las 15 explicadas (en portugués)", "vid_sub": "El video completo detalla cada una; el corto nombra las 15 en menos de un minuto.",
+   "g_chip": "En números", "g_h": "Estrellas en GitHub", "g_sub": "Cuántas estrellas tenía cada proyecto el 18/10/2026 (la #11 es un post de Reddit y queda fuera). Las estrellas miden popularidad, no calidad.", "g_tab": "Ver como tabla", "g_c1": "Skill", "g_c2": "Estrellas", "g_nota": "Pasa el mouse o toca una barra para ver el número exacto.",
    "foot": "catálogo gratis · textos MIT, cada skill con la licencia de su proyecto original"},
 }
 IMG = {"notebooklm-py": "g15-notebooklm", "i-have-adhd": "g14-adhd", "billion-context": "g13-billion", "find-skills": "g12-skillssh",
@@ -162,6 +171,26 @@ def ficha(x, t, l):
     <h4>{t["h_ref"]}</h4><p class="refs">{refs}</p>
   </div>
 </article>'''
+
+
+def grafico(cat, t, l):
+    xs = sorted([x for x in cat if x["estrelas"]], key=lambda x: -x["estrelas"])
+    W, LW, RW, BH, GAP = 760, 210, 70, 22, 8
+    mx = xs[0]["estrelas"]; H = len(xs) * (BH + GAP)
+    rows = []
+    for i, x in enumerate(xs):
+        y = i * (BH + GAP); w = max(4, (W - LW - RW) * x["estrelas"] / mx)
+        full = f'{x["estrelas"]:,}'.replace(",", "." if l != "en" else ",")
+        rows.append(f'<g class="bar"><title>#{x["pos"]} {E(x["nome"])}: {full} ★</title>'
+                    f'<rect class="hit" x="0" y="{y}" width="{W}" height="{BH + GAP}"/>'
+                    f'<text class="lb" x="{LW - 10}" y="{y + BH/2 + 5}" text-anchor="end">#{x["pos"]} {E(x["nome"].split(" (")[0][:24])}</text>'
+                    f'<path class="mk" d="M{LW},{y} h{w-4} a4,4 0 0 1 4,4 v{BH-8} a4,4 0 0 1 -4,4 h-{w-4} z"/>'
+                    f'<text class="vl" x="{LW + w + 8}" y="{y + BH/2 + 5}">{mil(x["estrelas"], l)}</text></g>')
+    tab = "".join(f'<tr><td>#{x["pos"]} {E(x["nome"])}</td><td>{x["estrelas"]:,}</td></tr>'.replace(",", "." if l != "en" else ",") for x in xs)
+    return f'''<section id="numeros"><div class="wrap"><span class="chip">{t["g_chip"]}</span><h2>{t["g_h"]}</h2><p class="sub">{E(t["g_sub"])}</p>
+  <figure class="chart"><svg viewBox="0 0 {W} {H}" role="img" aria-label="{E(t["g_h"])}">{"".join(rows)}</svg><figcaption>{E(t["g_nota"])}</figcaption></figure>
+  <details class="tbl"><summary>{t["g_tab"]}</summary><table><thead><tr><th>{t["g_c1"]}</th><th>{t["g_c2"]}</th></tr></thead><tbody>{tab}</tbody></table></details>
+</div></section>'''
 
 
 def pagina(l):
@@ -224,6 +253,7 @@ def pagina(l):
   <figure style="margin:0 0 26px;border-radius:16px;overflow:hidden;border:1px solid var(--line);box-shadow:0 30px 80px -30px #000"><img src="{p}assets/banner-grade{bn}.jpg" alt="{E(t["alt"])}" loading="lazy" style="width:100%;display:block"></figure>
   <div class="grid g3">{cards}</div></div></section>
 <section id="indice"><div class="wrap"><span class="chip">{t["idx_chip"]}</span><h2>{t["idx_h"]}</h2><p class="sub">{E(t["idx_sub"])}</p><div class="idx">{idx}</div></div></section>
+{grafico(cat, t, l)}
 <section id="escolher"><div class="wrap"><span class="chip">{t["esc_chip"]}</span><h2>{t["esc_h"]}</h2><p class="sub">{E(t["esc_sub"])}</p><div class="flow">{flow}</div></div></section>
 <section id="skills"><div class="wrap">
 {sk}
