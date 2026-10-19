@@ -1,0 +1,436 @@
+[
+ {
+  "pos": 15,
+  "slug": "notebooklm-py",
+  "nome": "NotebookLM",
+  "repo": "teng-lin/notebooklm-py",
+  "url": "https://github.com/teng-lin/notebooklm-py",
+  "estrelas": 19792,
+  "licenca": "MIT",
+  "categoria": "ahorro de tokens",
+  "problema": "Cuando le pasas muchos PDF a Claude, los lee palabra por palabra y tu límite de uso se agota rápido.",
+  "o_que_faz": "Permite que Claude controle NotebookLM de Google (ahora llamado Gemini Notebook). Claude crea el cuaderno, envía los documentos y hace las preguntas; quien lee y analiza es Google, y la respuesta vuelve con las fuentes citadas.",
+  "como_funciona": [
+   "Instalas la herramienta en el ordenador e inicias sesión con tu cuenta de Google una vez",
+   "Claude crea un cuaderno en NotebookLM",
+   "Envía tus archivos (PDF, enlaces, YouTube, Google Drive)",
+   "Hace las preguntas allí; Gemini lee y responde basándose en tus fuentes",
+   "La respuesta, con las citas, vuelve a la conversación en Claude"
+  ],
+  "instalar": "uv tool install \"notebooklm-py[browser]\" → notebooklm login → notebooklm skill install (o: npx skills add teng-lin/notebooklm-py). También puedes pegar el enlace en Claude Code y decir «instala esto por mí».",
+  "exemplo_pedido": "Crea un cuaderno con los PDF de mi carpeta Contratos y dame los tres puntos principales.",
+  "exemplo_resultado": "Claude crea el cuaderno en NotebookLM, envía los PDF y devuelve los tres puntos principales indicando qué documento respalda cada uno.",
+  "cuidado": "No es oficial de Google: usa APIs no documentadas que pueden cambiar y dejar de funcionar en cualquier momento, y el uso intensivo puede tener límites. Necesitas iniciar sesión con una cuenta de Google.",
+  "frase_video": "En vez de leer cada página, Claude deja que NotebookLM se encargue, como un becario que lo lee todo y solo te entrega el resumen.",
+  "fonte_readme": "README, seções 'Installation' (uv tool install \"notebooklm-py[browser]\" + notebooklm login) e 'Agent Setup' (notebooklm skill install / npx skills add teng-lin/notebooklm-py)",
+  "instalar_shell": [
+   "uv tool install \"notebooklm-py[browser]\"",
+   "notebooklm login",
+   "notebooklm skill install"
+  ]
+ },
+ {
+  "pos": 14,
+  "slug": "i-have-adhd",
+  "nome": "I Have ADHD",
+  "repo": "ayghri/i-have-adhd",
+  "url": "https://github.com/ayghri/i-have-adhd",
+  "estrelas": 57712,
+  "licenca": "MIT",
+  "categoria": "respuestas",
+  "problema": "Claude se enrolla: escribe tres párrafos antes de dar la respuesta que necesitabas.",
+  "o_que_faz": "Una skill con 10 reglas que obliga al asistente a empezar por la acción, numerar los pasos y eliminar los adornos. Nada de «¡Buena pregunta!» al principio ni «Espero haberte ayudado» al final.",
+  "como_funciona": [
+   "Instalas el plugin y llamas a /i-have-adhd (o lo dejas activado siempre)",
+   "La respuesta empieza por la siguiente acción: comando, archivo o fragmento",
+   "Las tareas con varios pasos van numeradas y las listas tienen como máximo 5 elementos",
+   "Sin introducción, sin resumen repetido, sin despedida",
+   "Termina con un único siguiente paso concreto"
+  ],
+  "instalar": "claude plugin marketplace add ayghri/i-have-adhd → claude plugin install i-have-adhd@i-have-adhd (después escribe /i-have-adhd). También puedes pegar el enlace en Claude Code y decir «instala esto por mí».",
+  "exemplo_pedido": "¿Cómo arreglo mi sitio web, que va lento?",
+  "exemplo_resultado": "Devuelve una lista breve y numerada de lo que hay que hacer, en orden, y un único siguiente paso al final, sin una explicación larga antes.",
+  "cuidado": "El nombre es solo un apodo: no es una herramienta de salud ni requiere diagnóstico. La regla de mantenerla siempre activada es opcional (archivo ~/.claude/.i-have-adhd-always).",
+  "frase_video": "Es como un amigo que responde a tu pregunta en vez de contarte primero la historia de su vida.",
+  "fonte_readme": "INSTALL.md (seção Claude Code: claude plugin marketplace add ayghri/i-have-adhd + claude plugin install i-have-adhd@i-have-adhd); README seção 'The rules'",
+  "instalar_shell": [
+   "claude plugin marketplace add ayghri/i-have-adhd",
+   "claude plugin install i-have-adhd@i-have-adhd"
+  ]
+ },
+ {
+  "pos": 13,
+  "slug": "billion-context",
+  "nome": "Billion Context",
+  "repo": "ranxianglei/billion-context",
+  "url": "https://github.com/ranxianglei/billion-context",
+  "estrelas": 1892,
+  "licenca": "no identificada por GitHub (NOASSERTION)",
+  "categoria": "ahorro de tokens",
+  "problema": "En una conversación larga, con cada mensaje el modelo vuelve a leer todo desde el principio y el límite se consume muy rápido.",
+  "o_que_faz": "Se sitúa entre tu asistente y el modelo, y comprime la parte antigua de la conversación en resúmenes detallados. El propio modelo decide cuándo y qué resumir, y puede deshacer el resumen si necesita recuperar algún detalle.",
+  "como_funciona": [
+   "Instalas el comando bili y conectas Claude Code a través de él",
+   "Cada solicitud pasa por un intermediario (proxy) antes de llegar al modelo",
+   "El intermediario da al modelo herramientas para comprimir, descomprimir y buscar en el historial",
+   "Los fragmentos antiguos se convierten en resúmenes; se conserva lo importante y se elimina el resto",
+   "Sigues conversando y la compresión ocurre en segundo plano"
+  ],
+  "instalar": "En Claude Code: /plugin marketplace add ranxianglei/billion-context → /plugin install billion-context@billion-context → /billion-context:bili-setup (y reinicia). Alternativa: npm install -g billion-context --prefix=~/.local y luego bili claude. También puedes pegar el enlace en Claude Code y decir «instala esto por mí».",
+  "exemplo_pedido": "Instala billion-context y abre Claude Code a través de él para que pueda continuar este proyecto en la misma conversación.",
+  "exemplo_resultado": "La conversación sigue con normalidad; las partes antiguas se resumen en segundo plano y el comando /acp muestra cuánto contexto se está usando.",
+  "cuidado": "Las cifras (5 veces menos tokens, sesiones de meses, 174 mil llamadas en 4,5 meses) son del propio autor, en su artículo; nadie externo las ha medido. Intercepta el tráfico entre el asistente y el modelo (proxy, en algunos modos con certificado propio), así que pruébalo antes de usarlo para algo importante.",
+  "frase_video": "Comprime la parte antigua de la conversación en resúmenes breves, como hacer la maleta llevando solo lo necesario, pero el ahorro se basa en las pruebas del propio autor.",
+  "fonte_readme": "README, seção 'Install' (npm install -g billion-context --prefix=~/.local) e nota '- claude:' em Option 1 (/plugin marketplace add ranxianglei/billion-context, /plugin install billion-context@billion-context, /billion-context:bili-setup); seção 'Paper / Preprint'",
+  "instalar_shell": [
+   "claude plugin marketplace add ranxianglei/billion-context",
+   "claude plugin install billion-context@billion-context"
+  ]
+ },
+ {
+  "pos": 12,
+  "slug": "find-skills",
+  "nome": "Find Skills",
+  "repo": "vercel-labs/skills",
+  "url": "https://github.com/vercel-labs/skills/tree/main/skills/find-skills",
+  "estrelas": 35517,
+  "licenca": "MIT",
+  "categoria": "descubrimiento",
+  "problema": "Hay miles de skills y no sabes si ya existe una lista para lo que necesitas.",
+  "o_que_faz": "Una skill que busca otras skills. Preguntas en lenguaje corriente y busca en el directorio abierto de skills (skills.sh), y te devuelve opciones con el comando de instalación de cada una.",
+  "como_funciona": [
+   "Preguntas si existe una skill para alguna tarea",
+   "Identifica el tema y la tarea",
+   "Comprueba la clasificación de skills.sh y realiza la búsqueda (npx skills find)",
+   "Filtra por calidad: número de instalaciones, quién la publicó y estrellas",
+   "Muestra las opciones con el comando para instalar"
+  ],
+  "instalar": "npx skills add vercel-labs/skills --skill find-skills. También puedes pegar el enlace en Claude Code y decir «instala esto por mí».",
+  "exemplo_pedido": "¿Existe una skill para escribir guías en PDF?",
+  "exemplo_resultado": "Devuelve una lista de las skills encontradas, con el número de instalaciones de cada una, quién la publicó y el comando npx skills add para instalarla.",
+  "cuidado": "Solo sugiere; tú decides si instalar. La propia skill recomienda desconfiar de skills con menos de 100 instalaciones o de repositorios pequeños.",
+  "frase_video": "Es la skill con más instalaciones y sirve para encontrar otras skills, como un buscador de skills dentro de Claude.",
+  "fonte_readme": "skills/find-skills/SKILL.md (comandos npx skills find / npx skills add); README do vercel-labs/skills (sintaxe npx skills add <repo> --skill <nome>)",
+  "instalar_shell": [
+   "npx skills add vercel-labs/skills --skill find-skills"
+  ]
+ },
+ {
+  "pos": 11,
+  "slug": "de-ai-writing",
+  "nome": "De-AI Writing",
+  "repo": null,
+  "url": "https://www.reddit.com/r/claudeskills/comments/1wpbkmy/a_free_claude_skill_to_deai_your_written_content/",
+  "estrelas": null,
+  "licenca": null,
+  "categoria": "escritura",
+  "problema": "Un texto que parece escrito por IA («situado en el corazón de la ciudad, testimonio de la rica herencia cultural») hace que el lector desconfíe y deje de leer.",
+  "o_que_faz": "Instrucciones publicadas en Reddit que se convierten en una skill para reescribir textos y quitarles los rasgos de escritura de IA. La base es la lista «Signs of AI writing» de Wikipedia, mantenida por WikiProject AI Cleanup. Quien quiera instalarla con un comando puede usar Humanizer (blader/humanizer), que usa la misma base.",
+  "como_funciona": [
+   "Copias las instrucciones de la publicación de Reddit",
+   "Las pegas en Claude y dices «convierte esto en una skill»",
+   "Le das tu texto a la skill",
+   "Cambia los rasgos de IA (palabras de moda, exceso de rayas, frases efectistas) por frases directas",
+   "Te muestra qué cambió para que puedas deshacer lo que no te guste"
+  ],
+  "instalar": "No tiene repositorio: copia las instrucciones de la publicación de Reddit, pégalas en Claude y di «convierte esto en una skill». Alternativa instalable con la misma base (Humanizer): /plugin marketplace add blader/humanizer → /plugin install humanizer@humanizer.",
+  "exemplo_pedido": "Reescribe este texto de mi cafetería para que no parezca escrito por IA: «Situado en el corazón de la ciudad, nuestro café es testimonio de la rica herencia cultural de la región».",
+  "exemplo_resultado": "Algo como «Nuestra cafetería está en la plaza principal, en un edificio que es panadería desde 1911», junto con la lista de cambios.",
+  "cuidado": "No hay código ni repositorio para comprobar; el contenido de la publicación no se verificó aquí. La promesa de reducir la detección de IA entre un 70 y un 95 % es del autor de la publicación. El README de Humanizer, que usa la misma base, dice lo contrario: engañar a los detectores no es el objetivo y estos todavía marcan la mayor parte de su texto.",
+  "frase_video": "No adivina qué es un texto de IA: usa la lista de la propia Wikipedia y además te muestra los cambios para que puedas deshacerlos.",
+  "fonte_readme": "Sem README (post do Reddit). Alternativa: README do blader/humanizer, seção 'Installation > Claude Code' (/plugin marketplace add blader/humanizer, /plugin install humanizer@humanizer) e frase 'Getting past AI detectors is not a goal'",
+  "instalar_shell": [
+   "claude plugin marketplace add blader/humanizer",
+   "claude plugin install humanizer@humanizer"
+  ]
+ },
+ {
+  "pos": 10,
+  "slug": "archify",
+  "nome": "Archify",
+  "repo": "tt-a1i/archify",
+  "url": "https://github.com/tt-a1i/archify",
+  "estrelas": 85447,
+  "licenca": "MIT",
+  "categoria": "diagramas",
+  "problema": "Explicas cómo funciona una automatización, un sistema o un plan en una reunión, y el cliente solo asiente sin entender.",
+  "o_que_faz": "Convierte una descripción en una frase (o código existente) en un diagrama interactivo dentro de un único archivo HTML. Quien lo recibe puede hacer clic en cada paso, seguir rutas y ver qué ocurre después, sin instalar nada.",
+  "como_funciona": [
+   "Describes el proceso en una frase (no hace falta código)",
+   "El agente prepara la estructura del diagrama",
+   "Los verificadores integrados revisan y corrigen la estructura",
+   "Se genera un único archivo HTML que se abre en el navegador",
+   "Pides ajustes en la conversación: «destaca esta ruta», «tema claro»"
+  ],
+  "instalar": "npx skills add tt-a1i/archify -g. También puedes pegar el enlace en Claude Code y decir «instala esto por mí».",
+  "exemplo_pedido": "Usa Archify para dibujar cómo funciona mi atención al cliente: el cliente escribe por WhatsApp, el agente responde y, si no sabe, se lo pasa a una persona.",
+  "exemplo_resultado": "Un archivo HTML con el flujo dibujado; puedes hacer clic en cada paso, ver los detalles y seguir el recorrido de principio a fin.",
+  "cuidado": "Puede consultar una dirección fija una vez al día solo para avisar de actualizaciones (se desactiva con ARCHIFY_UPDATE_CHECK_DISABLED=1). Los servicios de pago de terceros que llevan ese nombre no forman parte del proyecto.",
+  "frase_video": "Es la diferencia entre explicar el camino y poner un mapa en manos de la persona.",
+  "fonte_readme": "README, seções 'Install, then describe your idea' e 'Quick start > 1. Install' (npx skills add tt-a1i/archify -g)",
+  "instalar_shell": [
+   "npx skills add tt-a1i/archify -g"
+  ]
+ },
+ {
+  "pos": 9,
+  "slug": "nanoclaw",
+  "nome": "NanoClaw",
+  "repo": "nanocoai/nanoclaw",
+  "url": "https://github.com/nanocoai/nanoclaw",
+  "estrelas": 30965,
+  "licenca": "MIT",
+  "categoria": "asistente",
+  "problema": "Tener un asistente personal de IA en el móvil sin entregar tu vida a un programa enorme que nadie entiende.",
+  "o_que_faz": "Un asistente personal con el que hablas por WhatsApp, Telegram, Slack, Discord, iMessage y otros medios. Recuerda lo que le contaste, ejecuta tareas programadas y cada agente trabaja aislado en su propio contenedor. Funciona sobre Claude Agent SDK de Anthropic.",
+  "como_funciona": [
+   "Descargas el proyecto y ejecutas el script de instalación",
+   "El script instala Node, pnpm y Docker si faltan, y prepara el contenedor del agente",
+   "Conectas tu primer canal (WhatsApp, Telegram, Slack...)",
+   "Envías un mensaje con la palabra de activación (por defecto: @Andy)",
+   "Responde, guarda memoria y ejecuta tareas en el horario acordado"
+  ],
+  "instalar": "git clone https://github.com/nanocoai/nanoclaw.git nanoclaw-v2 → cd nanoclaw-v2 → bash nanoclaw.sh (ejecútalo en la terminal, fuera de una sesión de Claude). También puedes pegar el enlace en Claude Code y decir «instala esto por mí».",
+  "exemplo_pedido": "@Andy cada lunes a las 8: reúne las noticias de IA de la semana y envíame un resumen.",
+  "exemplo_resultado": "Cada lunes a las 8 recibes en WhatsApp/Telegram un mensaje con el resumen de las noticias.",
+  "cuidado": "Es un proyecto más grande que una skill: requiere Docker y que registres tus credenciales de Anthropic. La configuración envía diagnósticos anónimos (se desactiva con NANOCLAW_NO_DIAGNOSTICS=1). La historia del acuerdo con Docker, de Hacker News y de la publicación de Karpathy no aparece en el README.",
+  "frase_video": "Un asistente que vive en tu WhatsApp, lo bastante pequeño para entenderlo, con cada agente encerrado en su propio contenedor.",
+  "fonte_readme": "README, seção 'Quick Start' (git clone ... nanoclaw-v2 / bash nanoclaw.sh) e 'Usage' (@Andy ...); 'Why I Built NanoClaw' (meio milhão de linhas do OpenClaw)",
+  "instalar_shell": []
+ },
+ {
+  "pos": 8,
+  "slug": "karpathy-claude-md",
+  "nome": "CLAUDE.md do Karpathy",
+  "repo": "multica-ai/andrej-karpathy-skills",
+  "url": "https://github.com/multica-ai/andrej-karpathy-skills",
+  "estrelas": 220989,
+  "licenca": "MIT (declarada en el README; GitHub no detecta archivo de licencia)",
+  "categoria": "reglas",
+  "problema": "Le pides a Claude que cambie una línea y reescribe la mitad del proyecto, además de inventarse funciones que nadie pidió.",
+  "o_que_faz": "Un único archivo CLAUDE.md con cuatro reglas, basadas en las observaciones de Andrej Karpathy sobre los errores de los modelos al programar: pensar antes de escribir código, priorizar la sencillez, hacer cambios quirúrgicos y trabajar guiándose por un objetivo.",
+  "como_funciona": [
+   "Pensar antes de escribir código: indicar las suposiciones y preguntar si hay dudas",
+   "Priorizar la sencillez: el mínimo código que resuelve el problema, nada más",
+   "Cambios quirúrgicos: modificar solo lo que se pidió",
+   "Trabajar guiándose por un objetivo: convertir la petición en una meta verificable (por ejemplo, una prueba que debe pasar)"
+  ],
+  "instalar": "/plugin marketplace add forrestchang/andrej-karpathy-skills → /plugin install andrej-karpathy-skills@karpathy-skills (o descarga CLAUDE.md en la carpeta del proyecto: curl -o CLAUDE.md https://raw.githubusercontent.com/forrestchang/andrej-karpathy-skills/main/CLAUDE.md). También puedes pegar el enlace en Claude Code y decir «instala esto por mí».",
+  "exemplo_pedido": "Corrige solo el error tipográfico del título de la página de inicio.",
+  "exemplo_resultado": "Claude cambia solo esa línea y no toca el resto; si tiene dudas, pregunta antes.",
+  "cuidado": "No lo escribió Karpathy: es un archivo «inspirado» en una publicación suya, creado por otro autor (forrestchang, ahora en la organización multica-ai). El README avisa que hace que Claude sea más prudente y un poco más lento en tareas sencillas.",
+  "frase_video": "Tiene más de 220 mil estrellas y ni siquiera es una skill: es un archivo de texto con cuatro reglas.",
+  "fonte_readme": "README, seção 'Install' (Option A: /plugin marketplace add forrestchang/andrej-karpathy-skills + /plugin install andrej-karpathy-skills@karpathy-skills; Option B: curl do CLAUDE.md)",
+  "instalar_shell": [
+   "claude plugin marketplace add forrestchang/andrej-karpathy-skills",
+   "claude plugin install andrej-karpathy-skills@karpathy-skills"
+  ]
+ },
+ {
+  "pos": 7,
+  "slug": "hyperframes",
+  "nome": "HyperFrames",
+  "repo": "heygen-com/hyperframes",
+  "url": "https://github.com/heygen-com/hyperframes",
+  "estrelas": 66840,
+  "licenca": "Apache-2.0",
+  "categoria": "vídeo",
+  "problema": "Hacer un vídeo con título animado, música y cortes lleva una hora en un editor, y al final la duración sigue siendo incorrecta.",
+  "o_que_faz": "Herramienta de código abierto de HeyGen que convierte páginas HTML con animaciones en vídeos MP4. Describes el vídeo con palabras y el agente lo prepara, revisa y renderiza, con títulos, animaciones, vídeo de fondo y música.",
+  "como_funciona": [
+   "Describes el vídeo en lenguaje corriente",
+   "El agente planifica las escenas y escribe el vídeo como una página HTML",
+   "Añade animaciones, medios y música",
+   "Lo revisa y muestra una vista previa en el navegador",
+   "Lo renderiza: el navegador captura cada fotograma y FFmpeg genera el MP4"
+  ],
+  "instalar": "claude plugin marketplace add heygen-com/hyperframes → claude plugin install hyperframes@hyperframes (después usa /hyperframes:hyperframes). Necesita Node.js 22+ y FFmpeg. También puedes pegar el enlace en Claude Code y decir «instala esto por mí».",
+  "exemplo_pedido": "Usando /hyperframes, crea una apertura de 10 segundos para mi producto, con el título apareciendo despacio, vídeo de fondo y música suave.",
+  "exemplo_resultado": "Un archivo MP4 listo, con el título animado, el fondo y la música.",
+  "cuidado": "Requiere tener instalados Node.js 22+ y FFmpeg. HeyGen también vende servicios de pago; HyperFrames es abierto y funciona localmente.",
+  "frase_video": "Describes el vídeo con palabras y Claude te entrega un archivo de vídeo de verdad, como un diseñador de motion graphics que trabaja a partir de una frase.",
+  "fonte_readme": "README, seção 'Quick Start > With an AI coding agent' (claude plugin marketplace add heygen-com/hyperframes + claude plugin install hyperframes@hyperframes) e 'Requirements: Node.js 22+, FFmpeg'",
+  "instalar_shell": [
+   "claude plugin marketplace add heygen-com/hyperframes",
+   "claude plugin install hyperframes@hyperframes"
+  ],
+  "inema": {
+   "titulo": "explicavideos: el motor de vídeo de INEMA (usa HyperFrames)",
+   "url": "https://inematds.github.io/explicavideos/guia/"
+  }
+ },
+ {
+  "pos": 6,
+  "slug": "mattpocock-skills",
+  "nome": "Skills do Matt Pocock",
+  "repo": "mattpocock/skills",
+  "url": "https://github.com/mattpocock/skills",
+  "estrelas": 296322,
+  "licenca": "MIT",
+  "categoria": "código",
+  "problema": "Claude escribe miles de líneas en minutos y luego pasas días descubriendo qué se rompió, porque empezó antes de entender lo que querías.",
+  "o_que_faz": "El conjunto de skills que el profesor de programación Matt Pocock usa todos los días. Abordan cuatro problemas: el agente no hizo lo que querías, habla demasiado, el código no funciona y el proyecto se vuelve un caos. /grill-me hace preguntas hasta que el plan queda claro, /tdd escribe una prueba antes del código y /code-review revisa el propio trabajo.",
+  "como_funciona": [
+   "Instalas el paquete y ejecutas /setup-matt-pocock-skills una vez por proyecto",
+   "Antes de construir, /grill-me te hace preguntas hasta que el plan queda claro",
+   "/tdd escribe primero la prueba y luego el código para que pase",
+   "/code-review revisa el cambio antes de que lo aceptes",
+   "Otras, como /diagnosing-bugs y /improve-codebase-architecture, se ocupan de los errores y la organización"
+  ],
+  "instalar": "claude plugin install mattpocock-skills@claude-plugins-official → después ejecuta /setup-matt-pocock-skills en el proyecto. También puedes pegar el enlace en Claude Code y decir «instala esto por mí».",
+  "exemplo_pedido": "/grill-me quiero crear una página de inscripción para mi curso.",
+  "exemplo_resultado": "En vez de ponerse a programar enseguida, Claude te hace una serie de preguntas (quién se inscribe, qué datos pedir, qué ocurre después) hasta dejar el plan cerrado.",
+  "cuidado": "Está pensado para quienes programan: la configuración pregunta qué sistema de tareas y etiquetas usas. No lo instales a la vez desde el plugin y skills.sh, porque cada skill aparecerá dos veces.",
+  "frase_video": "El problema no es que Claude programe despacio, sino que empiece a construir antes de saber qué quieres; estas skills lo frenan donde importa.",
+  "fonte_readme": "README, seção 'Installation (30-second setup) > Claude Code' (claude plugin install mattpocock-skills@claude-plugins-official) e '2. Run /setup-matt-pocock-skills'; seções '#1' a '#4' dos problemas",
+  "instalar_shell": [
+   "claude plugin install mattpocock-skills@claude-plugins-official"
+  ],
+  "inema": {
+   "titulo": "trio-skills: Pocock + Addy + pstack organizados",
+   "url": "https://inematds.github.io/trio-skills/guia/"
+  }
+ },
+ {
+  "pos": 5,
+  "slug": "career-ops",
+  "nome": "Career Ops",
+  "repo": "career-ops-hq/career-ops",
+  "url": "https://github.com/career-ops-hq/career-ops",
+  "estrelas": 75514,
+  "licenca": "MIT",
+  "categoria": "carrera profesional",
+  "problema": "Enviar 50 currículums y 50 cartas para recibir dos respuestas.",
+  "o_que_faz": "Un agente de búsqueda de empleo que funciona en tu ordenador. Pegas una oferta y comprueba si sigue abierta, puntúa cuánto encajas, adapta el currículum y la carta a esa oferta y redacta las respuestas. Tú revisas y pulsas Enviar.",
+  "como_funciona": [
+   "Lo instalas, añades tu currículum (cv.md) y cuentas qué buscas",
+   "Pegas el enlace o el texto de una oferta (/career-ops)",
+   "Comprueba si la oferta sigue disponible",
+   "Puntúa el encaje con tu currículum y te avisa cuando no merece la pena",
+   "Genera un currículum en PDF, una carta y respuestas; tú los revisas y envías"
+  ],
+  "instalar": "npx @santifer/career-ops init (crea la carpeta career-ops; después abre Claude Code dentro de ella y usa /career-ops). También puedes pegar el enlace en Claude Code y decir «instala esto por mí».",
+  "exemplo_pedido": "/career-ops https://empresa.com/vagas/analista-de-dados",
+  "exemplo_resultado": "Un informe que indica si la oferta sigue abierta, la puntuación de encaje con tu currículum, un currículum en PDF adaptado y un borrador de respuestas, todo guardado en tu ordenador.",
+  "cuidado": "Nunca envía una candidatura por su cuenta. Tu currículum se envía al proveedor de IA que uses. Las cifras (740 ofertas, 68 candidaturas, 12 entrevistas, 1 oferta) son del propio autor.",
+  "frase_video": "Es como tener, por primera vez, a un reclutador de tu lado.",
+  "fonte_readme": "README, seções 'Your turn' e 'Quick Start' (npx @santifer/career-ops init), 'What career-ops does for you', 'What career-ops will not do' e 'Usage' (/career-ops {JD})",
+  "instalar_shell": [
+   "npx @santifer/career-ops init"
+  ]
+ },
+ {
+  "pos": 4,
+  "slug": "graphify",
+  "nome": "Graphify",
+  "repo": "Graphify-Labs/graphify",
+  "url": "https://github.com/Graphify-Labs/graphify",
+  "estrelas": 128483,
+  "licenca": "Apache-2.0",
+  "categoria": "conocimiento",
+  "problema": "Notas, PDF, capturas, vídeos y código en una misma carpeta, y nadie sabe qué relación hay entre ellos.",
+  "o_que_faz": "Escribes /graphify y lee toda la carpeta para crear un mapa (grafo de conocimiento) de cómo se relaciona cada cosa. Después, el agente consulta ese mapa en vez de volver a leer todos los archivos.",
+  "como_funciona": [
+   "Ejecutas /graphify . en la carpeta",
+   "El código se lee localmente, sin IA y sin salir del ordenador",
+   "Los documentos, PDF, imágenes y vídeos pasan por el modelo de tu asistente para extraer su significado",
+   "Cada relación se marca como leída directamente de la fuente o deducida",
+   "Se generan tres archivos: el mapa interactivo (graph.html), un informe y el grafo completo para consultas"
+  ],
+  "instalar": "uv tool install graphifyy → graphify install (detecta el asistente y registra la skill) → en Claude Code: /graphify . — necesita Python 3.10+ y uv (o pipx). También puedes pegar el enlace en Claude Code y decir «instala esto por mí».",
+  "exemplo_pedido": "/graphify . y luego dime cómo se conecta el módulo de pagos con el de correos.",
+  "exemplo_resultado": "Un mapa interactivo en el navegador y una respuesta con la ruta entre los dos módulos y los archivos implicados.",
+  "cuidado": "Atención al nombre del paquete: graphifyy (con dos y). Los archivos que no son código usan el modelo del asistente (consume uso). El «80 % menos tokens» del README corresponde a la versión de pago (Graphify Cloud). La duda sobre las estrellas y el «75 % menos tokens» proviene de comentarios citados en el vídeo, no del README.",
+  "frase_video": "Lee todo lo que hay en la carpeta, todo tipo de archivos, y crea un mapa de cómo se relaciona cada archivo con los demás.",
+  "fonte_readme": "README, bloco 'Get started (30 seconds)' (uv tool install graphifyy + graphify install + /graphify .) e tabela de plataformas ('Claude Code (Linux/Mac) | graphify install')",
+  "instalar_shell": [
+   "uv tool install graphifyy",
+   "graphify install"
+  ]
+ },
+ {
+  "pos": 3,
+  "slug": "ai-website-cloner",
+  "nome": "AI Website Cloner",
+  "repo": "JCodesMore/ai-website-cloner-template",
+  "url": "https://github.com/JCodesMore/ai-website-cloner-template",
+  "estrelas": 36974,
+  "licenca": "MIT",
+  "categoria": "web",
+  "problema": "Rehacer un sitio web (tipografías, colores, diseño) puede llevarle días a un diseñador o desarrollador.",
+  "o_que_faz": "Un proyecto modelo con la skill /clone-website: le das la dirección y el agente reconstruye el sitio como una aplicación Next.js limpia y editable, con las mismas tipografías, colores y estructura. Parte del sitio real, no de una captura.",
+  "como_funciona": [
+   "Mapear: relaciona las páginas del sitio original con las del proyecto",
+   "Observar: examina el sitio en el ordenador y el móvil, y extrae imágenes y tipografías reales",
+   "Construir: crea los componentes y las interacciones",
+   "Comparar: coloca el original y la copia uno junto al otro, corrige las diferencias y ejecuta la comprobación final"
+  ],
+  "instalar": "Pega en Claude Code: «Set up https://github.com/JCodesMore/ai-website-cloner-template as a standalone project in a new folder on my computer...» (prompt del README) y después, dentro del proyecto: /clone-website https://seusite.com. Necesita Node.js 24+.",
+  "exemplo_pedido": "/clone-website https://meusite-antigo.com.br",
+  "exemplo_resultado": "Un proyecto Next.js con el sitio reconstruido, capturas que comparan el original y la copia, y una lista de lo que aún es diferente.",
+  "cuidado": "Clona solo sitios tuyos o para los que tengas permiso. El README prohíbe las estafas (phishing), hacerse pasar por otra marca y copiar diseños ajenos como propios; los logotipos y textos pertenecen a sus dueños.",
+  "frase_video": "Escribes /clone-website, pegas la dirección y Claude reconstruye la página con las mismas tipografías, colores y estructura.",
+  "fonte_readme": "README, seções 'Quick Start > 1. Set up your project' (prompt para o agente) e '2. Clone a website' (/clone-website https://example.com); 'Not Intended For'",
+  "instalar_shell": []
+ },
+ {
+  "pos": 2,
+  "slug": "anatomy",
+  "nome": "Anatomy",
+  "repo": "wheresryan22/anatomy",
+  "url": "https://github.com/wheresryan22/anatomy",
+  "estrelas": 16101,
+  "licenca": "MIT",
+  "categoria": "visual",
+  "problema": "Preguntas cómo funciona algo y recibes un bloque enorme de texto; vuelves a preguntar y el bloque crece.",
+  "o_que_faz": "En vez de explicarlo con texto, construye un objeto ilustrado e interactivo (vista isométrica) cuyo funcionamiento muestra la idea. Puedes moverlo con el ratón, acercarte y desmontarlo pieza por pieza en el navegador. Ejemplo de la galería: el motor de cohete Raptor de SpaceX, que se enciende y luego se desmonta en 11 partes.",
+  "como_funciona": [
+   "Pides /anatomy y haces tu pregunta",
+   "Claude inventa un objeto físico que muestra la idea en funcionamiento",
+   "Construye el objeto con decenas de piezas pequeñas y sombreadas, en una tarjeta con título y lectura en directo",
+   "Revisa su propio trabajo ampliando cada unión",
+   "Entrega una página HTML (o SVG) que abres y exploras en el navegador"
+  ],
+  "instalar": "npx skills add wheresryan22/anatomy -g -a claude-code (después: /anatomy y la pregunta). También puedes pegar el enlace en Claude Code y decir «instala esto por mí».",
+  "exemplo_pedido": "/anatomy explica de forma interactiva cómo funciona un limitador de solicitudes.",
+  "exemplo_resultado": "Una página en el navegador con una máquina ilustrada que muestra el mecanismo; pasas el ratón por encima y se mueve y muestra los números.",
+  "cuidado": "Es lento a propósito: cada figura requiere una sesión larga (el Raptor tarda unos minutos). Dibuja máquinas, instrumentos y objetos, no personas ni mapas exactos. El modo 3D aún está en beta.",
+  "frase_video": "No lo explica: lo construye. Lo convierte en un objeto que puedes girar, acercar y desmontar pieza por pieza en el navegador.",
+  "fonte_readme": "README, seções 'Quick start' (npx skills add wheresryan22/anatomy -g) e 'Install' (linha 'skills CLI, for you (Claude Code)': npx skills add wheresryan22/anatomy -g -a claude-code); 'Gallery' (raptor-engine) e 'Limits'",
+  "instalar_shell": [
+   "npx skills add wheresryan22/anatomy -g -a claude-code"
+  ]
+ },
+ {
+  "pos": 1,
+  "slug": "rea",
+  "nome": "REA (Reverse Engineer Anything)",
+  "repo": "morluto/rea",
+  "url": "https://github.com/morluto/rea",
+  "estrelas": 323745,
+  "licenca": "MIT",
+  "categoria": "ingeniería inversa",
+  "problema": "Ves una función en la aplicación de otra persona y la quieres en la tuya, pero no tienes el código, así que improvisas y te equivocas.",
+  "o_que_faz": "Conecta tu agente con herramientas que examinan una aplicación terminada sin necesitar el código fuente. El agente descubre cómo funciona la función, muestra pruebas de cada conclusión y construye una versión parecida en tu proyecto.",
+  "como_funciona": [
+   "Ejecutas la configuración, que conecta REA con tu agente (vía MCP)",
+   "Pides que investigue una función de una aplicación",
+   "REA examina la aplicación (programas nativos, apps JavaScript/Electron, .NET y sitios web) en tu ordenador",
+   "Devuelve lo que encontró, con pruebas y lo que quedó sin respuesta",
+   "El agente explica cómo funciona y escribe y prueba una versión en tu proyecto"
+  ],
+  "instalar": "npx rea-agents setup (elige Claude Code, aprueba los cambios y reinicia el agente). También puedes pegar el enlace en Claude Code y decir «instala esto por mí».",
+  "exemplo_pedido": "Entiende cómo funciona la búsqueda en la app de Notas, muéstrame las pruebas y construye algo parecido en mi proyecto.",
+  "exemplo_resultado": "Una explicación de cómo funciona la búsqueda por dentro, con los fragmentos y referencias que prueban cada punto, y una versión parecida implementada y probada en tu proyecto.",
+  "cuidado": "Solo para software tuyo o que tengas autorización para examinar (investigación, enseñanza o compatibilidad); el README pide un uso legal. Analizar programas nativos puede requerir herramientas como Hopper, Ghidra o IDA, y las versiones comerciales necesitan licencia. Descarga solo de fuentes oficiales (morluto/rea, rea.tools y el paquete npm rea-agents).",
+  "frase_video": "Es una radiografía de aplicaciones: el problema nunca fue construir la función, sino no poder ver el código que hay dentro.",
+  "fonte_readme": "README, seção 'Quick start > Set up your agent' (npx rea-agents setup) e 'Ask your agent'; 'Showcases > Notion: trace the Electron clipboard bridge'; 'Disclaimer'",
+  "instalar_shell": [
+   "npx rea-agents setup"
+  ],
+  "inema": {
+   "titulo": "Guía completa de REA en INEMA (pruebas reales, vídeos)",
+   "url": "https://inematds.github.io/rea-engenharia-reversa/guia/"
+  }
+ }
+]

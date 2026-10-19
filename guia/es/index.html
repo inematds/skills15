@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>skills15 — las 15 skills para Claude que valen la pena</title>
+<meta name="description" content="Las 15 skills para Claude Code que valen la pena: el problema que resuelve cada una, cómo funciona, un ejemplo, el comando de instalación y el enlace al proyecto original.">
+<link rel="alternate" hreflang="pt-BR" href="https://inematds.github.io/skills15/guia/">
+<link rel="alternate" hreflang="en" href="https://inematds.github.io/skills15/guia/en/">
+<link rel="alternate" hreflang="es" href="https://inematds.github.io/skills15/guia/es/">
+<meta property="og:image" content="https://inematds.github.io/skills15/guia/assets/banner-es.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0c0c10; --bg2:#14141b; --card:#16161e; --line:#272730;
+    --txt:#e9e9ee; --mut:#9a9aa6; --amb:#FACC15; --amb2:#fde68a; --sky:#38bdf8; --pro:#cbd5e1;
+    color-scheme:dark;
+  }
+  body.light{
+    --bg:#f6f7f9; --bg2:#eceef2; --card:#ffffff; --line:#e1e3ea;
+    --txt:#1a1a22; --mut:#5b5b68; --amb:#a16207; --amb2:#854d0e; --sky:#0369a1; --pro:#b45309;
+    color-scheme:light;
+  }
+  body.light .hero .glow{opacity:.5}
+  body.light pre{background:#0e0e14;color:#d6d6e0}
+  body.light pre .c{color:#8a8a98}
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;background:var(--bg);color:var(--txt);font:16px/1.65 Inter,system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+  h1,h2,h3{font-family:Sora,sans-serif;line-height:1.15;margin:0}
+  a{color:var(--amb);text-decoration:none}
+  code,pre{font-family:"JetBrains Mono",monospace}
+  .wrap{max-width:1160px;margin:0 auto;padding:0 22px}
+  .mut{color:var(--mut)} .amb{color:var(--amb)}
+  .chip{display:inline-block;font-size:.75rem;letter-spacing:.14em;text-transform:uppercase;color:var(--amb);font-weight:600;font-family:Sora}
+  nav{position:sticky;top:0;z-index:30;backdrop-filter:blur(12px);background:rgba(12,12,16,.78);border-bottom:1px solid var(--line)}
+  nav .wrap{display:flex;align-items:center;gap:22px;height:60px}
+  nav .brand{display:flex;align-items:center;gap:8px;font-family:Sora;font-weight:800;letter-spacing:-.02em;color:var(--amb)}
+  nav .brand .emoji{font-size:1.25rem}
+  nav .sep{color:var(--mut);opacity:.45}
+  nav .inema{color:var(--sky);font-weight:600;font-size:.88rem;font-family:Sora}
+  nav .inema:hover{filter:brightness(1.15)}
+  nav .pro{color:var(--pro);font-weight:600;font-size:.88rem;font-family:Sora}
+  nav .pro:hover{filter:brightness(1.15)}
+  nav .clubpro{display:inline-flex;align-items:center;gap:6px}
+  nav .links{margin-left:auto;display:flex;align-items:center;gap:20px;font-size:.92rem}
+  nav .links a.sec{color:var(--mut)} nav .links a.sec:hover{color:var(--txt)}
+  .lang{display:inline-flex;gap:2px;font-family:Sora;font-size:.78rem}
+  .lang a{color:var(--mut);padding:.2em .45em;border-radius:6px} .lang a.on{color:var(--amb);background:rgba(250,204,21,.12)}
+  .tgl{background:var(--bg2);border:1px solid var(--line);color:var(--txt);width:38px;height:38px;border-radius:10px;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;font-size:1.05rem}
+  .tgl:hover{border-color:var(--amb)}
+  .btn{display:inline-block;background:var(--amb);color:#1a1206;font-weight:600;padding:.6em 1.05em;border-radius:10px;font-family:Sora}
+  .btn.ghost{background:transparent;color:var(--txt);border:1px solid var(--line)}
+  @media(max-width:760px){nav .links a.sec{display:none}}
+  @media(max-width:520px){nav .wrap{gap:8px;padding:8px 14px;height:auto;flex-wrap:wrap} nav .links{gap:8px;margin-left:0;width:100%;justify-content:space-between} nav .btn{padding:.45em .7em;font-size:.82rem} .tgl{width:34px;height:34px}}
+  .hero{position:relative;overflow:hidden;border-bottom:1px solid var(--line)}
+  .hero .glow{position:absolute;inset:-40% -20% auto auto;width:70%;height:600px;background:radial-gradient(closest-side,rgba(250,204,21,.22),transparent 70%);pointer-events:none}
+  .hero .wrap{display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:center;padding:74px 22px}
+  .hero h1{font-size:clamp(2.2rem,5vw,3.5rem);font-weight:800;letter-spacing:-.025em}
+  .hero p.lead{font-size:1.18rem;color:var(--mut);margin:1.1em 0 1.6em;max-width:34ch}
+  .hero .cta{display:flex;gap:12px;flex-wrap:wrap}
+  .hero figure{margin:0;border-radius:16px;overflow:hidden;border:1px solid var(--line);box-shadow:0 30px 80px -30px #000}
+  .hero figure img{width:100%;display:block}
+  .resumo{padding:38px 0 34px;border-bottom:1px solid var(--line)}
+  .resumo p{font-size:1.12rem;line-height:1.7;max-width:74ch;margin:.55em 0 0}
+  @media(max-width:780px){.hero .wrap{grid-template-columns:1fr;padding:48px 22px}}
+  section{padding:62px 0;border-bottom:1px solid var(--line)}
+  section h2{font-size:clamp(1.5rem,3.4vw,2.1rem);font-weight:800;letter-spacing:-.02em}
+  section .sub{color:var(--mut);margin:.6em 0 2em;max-width:62ch}
+  .grid{display:grid;gap:16px}
+  .g3{grid-template-columns:repeat(3,1fr)} .g4{grid-template-columns:repeat(4,1fr)} .g2{grid-template-columns:repeat(2,1fr)}
+  @media(max-width:820px){.g3,.g4{grid-template-columns:1fr 1fr}}
+  @media(max-width:540px){.g2,.g3,.g4{grid-template-columns:1fr}}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:20px}
+  .card h3{font-size:1.05rem;margin-bottom:.4em}
+  .card p{color:var(--mut);font-size:.92rem;margin:0}
+  .num{display:inline-flex;width:30px;height:30px;align-items:center;justify-content:center;border-radius:8px;background:rgba(250,204,21,.14);color:var(--amb);font-family:Sora;font-weight:800;font-size:.9rem;margin-bottom:.7em}
+  .flow{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-top:10px}
+  .flow span{background:var(--bg2);border:1px solid var(--line);border-radius:999px;padding:.45em .9em;font-size:.85rem;font-family:Sora;font-weight:600}
+  .flow .arr{color:var(--amb);border:none;background:none;padding:0 .1em}
+  pre{background:#0a0a0e;border:1px solid var(--line);border-radius:12px;padding:16px 18px;overflow:auto;font-size:.86rem;line-height:1.6;color:#d6d6e0}
+  pre .c{color:#6f6f7c} pre .k{color:var(--amb2)} pre .s{color:#9ece6a}
+  .step{display:grid;grid-template-columns:46px minmax(0,1fr);gap:16px;margin-bottom:26px}
+  .step>div,.card{min-width:0}
+  p code,li code,td code{overflow-wrap:anywhere}
+  .step .b{width:46px;height:46px;border-radius:12px;background:var(--amb);color:#1a1206;font-family:Sora;font-weight:800;font-size:1.25rem;display:flex;align-items:center;justify-content:center}
+  .step h3{font-size:1.12rem;margin-bottom:.3em}
+  .step p{color:var(--mut);margin:.2em 0 .7em}
+  .ex{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+  @media(max-width:680px){.ex{grid-template-columns:1fr}}
+  .ex figure{margin:0;border-radius:14px;overflow:hidden;border:1px solid var(--line)}
+  .ex figure img{width:100%;display:block}
+  .ex figcaption{padding:12px 14px;font-size:.88rem;color:var(--mut);background:var(--card)}
+  .phase{display:flex;gap:14px;padding:16px 0;border-bottom:1px solid var(--line)}
+  .phase:last-child{border:none}
+  .phase .tag{flex:0 0 92px;font-family:Sora;font-weight:800;color:var(--amb)}
+  .phase .d strong{display:block;margin-bottom:.2em}
+  .phase .d span{color:var(--mut);font-size:.92rem}
+  footer{padding:46px 0;text-align:center;color:var(--mut);font-size:.9rem}
+  .pill{display:inline-block;border:1px solid var(--line);border-radius:999px;padding:.3em .8em;font-size:.78rem;color:var(--mut);margin:0 4px}
+
+  .idx{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin-top:22px}
+  @media(max-width:820px){.idx{grid-template-columns:repeat(3,1fr)}} @media(max-width:480px){.idx{grid-template-columns:1fr 1fr}}
+  .idx a{display:block;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px;color:var(--txt);font-family:Sora;font-weight:600;font-size:.9rem}
+  .idx a:hover{border-color:var(--amb)} .idx a b{display:block;color:var(--amb);font-size:1.3rem;font-weight:800}
+  .idx a small{display:block;color:var(--mut);font-family:Inter;font-weight:400;font-size:.8rem}
+  .sk{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:28px;padding:34px 0;border-top:1px solid var(--line);scroll-margin-top:70px}
+  @media(max-width:860px){.sk{grid-template-columns:minmax(0,1fr)}}
+  .sk p,.sk li{overflow-wrap:anywhere}
+  .sk figure{margin:0;border-radius:14px;overflow:hidden;border:1px solid var(--line);align-self:start}
+  .sk figure img{width:100%;display:block}
+  .sk .pos{font-family:Sora;font-weight:800;font-size:2.4rem;color:var(--amb);line-height:1}
+  .sk h3{font-size:1.45rem;margin:.2em 0 .35em}
+  .sk .meta{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px}
+  .sk .meta span{border:1px solid var(--line);border-radius:999px;padding:.2em .7em;font-size:.78rem;color:var(--mut)}
+  .sk h4{font-family:Sora;font-size:.78rem;letter-spacing:.12em;text-transform:uppercase;color:var(--amb);margin:16px 0 4px}
+  .sk p,.sk li{color:var(--txt);font-size:.96rem;margin:.2em 0}
+  .sk ol{margin:.2em 0;padding-left:1.3em}
+  .sk .exq{background:var(--bg2);border-left:3px solid var(--amb);border-radius:8px;padding:10px 14px;margin:6px 0}
+  .sk .exq p{margin:.25em 0} .sk .exq b{font-family:Sora;font-size:.82rem;color:var(--mut)}
+  .sk .warn{border-left-color:#ef4444}
+  .sk .refs a{margin-right:14px;font-weight:600}
+  .vid{display:grid;grid-template-columns:1.4fr .6fr;gap:18px} @media(max-width:760px){.vid{grid-template-columns:1fr}}
+  .vid iframe{width:100%;aspect-ratio:16/9;border:0;border-radius:14px} .vid .v916 iframe{aspect-ratio:9/16}
+</style>
+</head>
+<body>
+<nav><div class="wrap">
+  <a class="brand" href="#top"><span class="emoji">🧰</span> skills15</a>
+  <span class="sep">|</span>
+  <span class="clubpro"><a class="inema" href="https://inema.club" target="_blank" rel="noopener">INEMA.CLUB</a><span class="sep">-</span><a class="pro" href="https://inema.pro" target="_blank" rel="noopener">PRO</a></span>
+  <div class="links">
+    <a class="sec" href="#indice">Las 15</a>
+    <a class="sec" href="#escolher">Cómo elegir</a>
+    <a class="sec" href="#guia">Instalar</a>
+    
+    <span class="lang"><a href="../">PT</a><a href="../en/">EN</a><a class="on" href="./">ES</a></span>
+    <button class="tgl" id="themeToggle" aria-label="Tema" title="Tema">🌙</button>
+    <a class="btn" href="https://github.com/inematds/skills15" target="_blank" rel="noopener">GitHub</a>
+  </div>
+</div></nav>
+<header class="hero" id="top"><div class="glow"></div><div class="wrap">
+  <div><span class="chip">Catálogo · 15 skills para Claude</span><h1>Las 15 skills que <span class="amb">valen la pena</span></h1><p class="lead">Hay más de un millón de skills. Estas 15 resuelven problemas reales: gastar menos límite, respuestas directas, dibujar diagramas, hacer videos, programar con método y ver por dentro cualquier app.</p>
+  <div class="cta"><a class="btn" href="#indice">Ver las 15</a><a class="btn ghost" href="https://github.com/inematds/skills15" target="_blank" rel="noopener">Ver en GitHub</a></div></div>
+  <figure><img src="../assets/banner-es.jpg" alt="Las 15 mejores skills"></figure>
+</div></header>
+<section id="resumo" class="resumo"><div class="wrap"><span class="chip">En resumen</span><p>skills15 es un catálogo gratis de las 15 skills para agentes de IA (Claude Code y otros) que más valen la pena hoy. De cada una ves el problema que resuelve, cómo funciona por dentro, el comando oficial de instalación, un ejemplo de pedido y el enlace al proyecto original. Sirve para quien usa Claude y quiere elegir la skill correcta para el dolor de hoy, sin instalarlo todo. No hace falta programar: pega el enlace en Claude Code y pídele que la instale.</p></div></section>
+<section id="oque"><div class="wrap"><span class="chip">Qué es</span><h2>Un mapa, no una pila de skills</h2><p class="sub">Este repositorio no copia el código de nadie: apunta al proyecto original y explica, en lenguaje simple, cuándo vale la pena cada skill.</p>
+  <figure style="margin:0 0 26px;border-radius:16px;overflow:hidden;border:1px solid var(--line);box-shadow:0 30px 80px -30px #000"><img src="../assets/banner-grade-es.jpg" alt="Las 15 mejores skills" loading="lazy" style="width:100%;display:block"></figure>
+  <div class="grid g3"><div class="card"><h3>🎯 Un dolor, una skill</h3><p>Cada ficha empieza por el problema. Encuentras tu dolor y llegas a la skill.</p></div><div class="card"><h3>🔗 Siempre la fuente</h3><p>Enlace al repositorio original, estrellas contadas el 18/10/2026 y la licencia de cada uno.</p></div><div class="card"><h3>⚠️ Con los cuidados</h3><p>Avisos honestos: qué no es oficial, qué número es solo del autor y qué puede romperse.</p></div></div></div></section>
+<section id="indice"><div class="wrap"><span class="chip">Las 15</span><h2>De la 15.ª a la 1.ª</h2><p class="sub">Haz clic para ir a la ficha. Es una cuenta regresiva: la mejor queda al final.</p><div class="idx"><a href="#s15"><b>#15</b>NotebookLM<small>ahorro de tokens</small></a><a href="#s14"><b>#14</b>I Have ADHD<small>respuestas</small></a><a href="#s13"><b>#13</b>Billion Context<small>ahorro de tokens</small></a><a href="#s12"><b>#12</b>Find Skills<small>descubrimiento</small></a><a href="#s11"><b>#11</b>De-AI Writing<small>escritura</small></a><a href="#s10"><b>#10</b>Archify<small>diagramas</small></a><a href="#s9"><b>#9</b>NanoClaw<small>asistente</small></a><a href="#s8"><b>#8</b>CLAUDE.md do Karpathy<small>reglas</small></a><a href="#s7"><b>#7</b>HyperFrames<small>vídeo</small></a><a href="#s6"><b>#6</b>Skills do Matt Pocock<small>código</small></a><a href="#s5"><b>#5</b>Career Ops<small>carrera profesional</small></a><a href="#s4"><b>#4</b>Graphify<small>conocimiento</small></a><a href="#s3"><b>#3</b>AI Website Cloner<small>web</small></a><a href="#s2"><b>#2</b>Anatomy<small>visual</small></a><a href="#s1"><b>#1</b>REA (Reverse Engineer Anything)<small>ingeniería inversa</small></a></div></div></section>
+<section id="escolher"><div class="wrap"><span class="chip">Cómo elegir</span><h2>No las instales todas</h2><p class="sub">Cada skill de más es contexto que el agente carga y que puede activarse sin que quieras. El camino:</p><div class="flow"><span>tu dolor de hoy</span><span class="arr">→</span><span>la ficha</span><span class="arr">→</span><span>instala una</span><span class="arr">→</span><span>pruébala en una tarea real</span><span class="arr">→</span><span>se queda o la borras</span></div></div></section>
+<section id="skills"><div class="wrap">
+<article class="sk" id="s15">
+  <figure><img src="../assets/g15-notebooklm.jpg" alt="NotebookLM" loading="lazy"></figure>
+  <div>
+    <div class="pos">#15</div><h3>NotebookLM</h3>
+    <div class="meta"><span>ahorro de tokens</span><span>19,8 mil ★ al 18/10/2026</span><span>licencia: MIT</span></div>
+    <h4>El problema</h4><p>Cuando le pasas muchos PDF a Claude, los lee palabra por palabra y tu límite de uso se agota rápido.</p>
+    <h4>Qué hace</h4><p>Permite que Claude controle NotebookLM de Google (ahora llamado Gemini Notebook). Claude crea el cuaderno, envía los documentos y hace las preguntas; quien lee y analiza es Google, y la respuesta vuelve con las fuentes citadas.</p>
+    <h4>Cómo funciona</h4><ol><li>Instalas la herramienta en el ordenador e inicias sesión con tu cuenta de Google una vez</li><li>Claude crea un cuaderno en NotebookLM</li><li>Envía tus archivos (PDF, enlaces, YouTube, Google Drive)</li><li>Hace las preguntas allí; Gemini lee y responde basándose en tus fuentes</li><li>La respuesta, con las citas, vuelve a la conversación en Claude</li></ol>
+    <h4>Cómo instalar</h4><p>uv tool install &quot;notebooklm-py[browser]&quot; → notebooklm login → notebooklm skill install (o: npx skills add teng-lin/notebooklm-py). También puedes pegar el enlace en Claude Code y decir «instala esto por mí».</p><pre><span class="k">uv tool install &quot;notebooklm-py[browser]&quot;
+notebooklm login
+notebooklm skill install</span></pre>
+    <h4>Ejemplo</h4><div class="exq"><p><b>Tú pides:</b> Crea un cuaderno con los PDF de mi carpeta Contratos y dame los tres puntos principales.</p><p><b>Recibes:</b> Claude crea el cuaderno en NotebookLM, envía los PDF y devuelve los tres puntos principales indicando qué documento respalda cada uno.</p></div>
+    <h4>Cuidado</h4><div class="exq warn"><p>No es oficial de Google: usa APIs no documentadas que pueden cambiar y dejar de funcionar en cualquier momento, y el uso intensivo puede tener límites. Necesitas iniciar sesión con una cuenta de Google.</p></div>
+    <h4>Referencia</h4><p class="refs"><a href="https://github.com/teng-lin/notebooklm-py" target="_blank" rel="noopener">Proyecto original ↗</a></p>
+  </div>
+</article>
+<article class="sk" id="s14">
+  <figure><img src="../assets/g14-adhd.jpg" alt="I Have ADHD" loading="lazy"></figure>
+  <div>
+    <div class="pos">#14</div><h3>I Have ADHD</h3>
+    <div class="meta"><span>respuestas</span><span>57,7 mil ★ al 18/10/2026</span><span>licencia: MIT</span></div>
+    <h4>El problema</h4><p>Claude se enrolla: escribe tres párrafos antes de dar la respuesta que necesitabas.</p>
+    <h4>Qué hace</h4><p>Una skill con 10 reglas que obliga al asistente a empezar por la acción, numerar los pasos y eliminar los adornos. Nada de «¡Buena pregunta!» al principio ni «Espero haberte ayudado» al final.</p>
+    <h4>Cómo funciona</h4><ol><li>Instalas el plugin y llamas a /i-have-adhd (o lo dejas activado siempre)</li><li>La respuesta empieza por la siguiente acción: comando, archivo o fragmento</li><li>Las tareas con varios pasos van numeradas y las listas tienen como máximo 5 elementos</li><li>Sin introducción, sin resumen repetido, sin despedida</li><li>Termina con un único siguiente paso concreto</li></ol>
+    <h4>Cómo instalar</h4><p>claude plugin marketplace add ayghri/i-have-adhd → claude plugin install i-have-adhd@i-have-adhd (después escribe /i-have-adhd). También puedes pegar el enlace en Claude Code y decir «instala esto por mí».</p><pre><span class="k">claude plugin marketplace add ayghri/i-have-adhd
+claude plugin install i-have-adhd@i-have-adhd</span></pre>
+    <h4>Ejemplo</h4><div class="exq"><p><b>Tú pides:</b> ¿Cómo arreglo mi sitio web, que va lento?</p><p><b>Recibes:</b> Devuelve una lista breve y numerada de lo que hay que hacer, en orden, y un único siguiente paso al final, sin una explicación larga antes.</p></div>
+    <h4>Cuidado</h4><div class="exq warn"><p>El nombre es solo un apodo: no es una herramienta de salud ni requiere diagnóstico. La regla de mantenerla siempre activada es opcional (archivo ~/.claude/.i-have-adhd-always).</p></div>
+    <h4>Referencia</h4><p class="refs"><a href="https://github.com/ayghri/i-have-adhd" target="_blank" rel="noopener">Proyecto original ↗</a></p>
+  </div>
+</article>
+<article class="sk" id="s13">
+  <figure><img src="../assets/g13-billion.jpg" alt="Billion Context" loading="lazy"></figure>
+  <div>
+    <div class="pos">#13</div><h3>Billion Context</h3>
+    <div class="meta"><span>ahorro de tokens</span><span>1,9 mil ★ al 18/10/2026</span><span>licencia: no identificada por GitHub (NOASSERTION)</span></div>
+    <h4>El problema</h4><p>En una conversación larga, con cada mensaje el modelo vuelve a leer todo desde el principio y el límite se consume muy rápido.</p>
+    <h4>Qué hace</h4><p>Se sitúa entre tu asistente y el modelo, y comprime la parte antigua de la conversación en resúmenes detallados. El propio modelo decide cuándo y qué resumir, y puede deshacer el resumen si necesita recuperar algún detalle.</p>
+    <h4>Cómo funciona</h4><ol><li>Instalas el comando bili y conectas Claude Code a través de él</li><li>Cada solicitud pasa por un intermediario (proxy) antes de llegar al modelo</li><li>El intermediario da al modelo herramientas para comprimir, descomprimir y buscar en el historial</li><li>Los fragmentos antiguos se convierten en resúmenes; se conserva lo importante y se elimina el resto</li><li>Sigues conversando y la compresión ocurre en segundo plano</li></ol>
+    <h4>Cómo instalar</h4><p>En Claude Code: /plugin marketplace add ranxianglei/billion-context → /plugin install billion-context@billion-context → /billion-context:bili-setup (y reinicia). Alternativa: npm install -g billion-context --prefix=~/.local y luego bili claude. También puedes pegar el enlace en Claude Code y decir «instala esto por mí».</p><pre><span class="k">claude plugin marketplace add ranxianglei/billion-context
+claude plugin install billion-context@billion-context</span></pre>
+    <h4>Ejemplo</h4><div class="exq"><p><b>Tú pides:</b> Instala billion-context y abre Claude Code a través de él para que pueda continuar este proyecto en la misma conversación.</p><p><b>Recibes:</b> La conversación sigue con normalidad; las partes antiguas se resumen en segundo plano y el comando /acp muestra cuánto contexto se está usando.</p></div>
+    <h4>Cuidado</h4><div class="exq warn"><p>Las cifras (5 veces menos tokens, sesiones de meses, 174 mil llamadas en 4,5 meses) son del propio autor, en su artículo; nadie externo las ha medido. Intercepta el tráfico entre el asistente y el modelo (proxy, en algunos modos con certificado propio), así que pruébalo antes de usarlo para algo importante.</p></div>
+    <h4>Referencia</h4><p class="refs"><a href="https://github.com/ranxianglei/billion-context" target="_blank" rel="noopener">Proyecto original ↗</a></p>
+  </div>
+</article>
+<article class="sk" id="s12">
+  <figure><img src="../assets/g12-skillssh.jpg" alt="Find Skills" loading="lazy"></figure>
+  <div>
+    <div class="pos">#12</div><h3>Find Skills</h3>
+    <div class="meta"><span>descubrimiento</span><span>35,5 mil ★ al 18/10/2026</span><span>licencia: MIT</span></div>
+    <h4>El problema</h4><p>Hay miles de skills y no sabes si ya existe una lista para lo que necesitas.</p>
+    <h4>Qué hace</h4><p>Una skill que busca otras skills. Preguntas en lenguaje corriente y busca en el directorio abierto de skills (skills.sh), y te devuelve opciones con el comando de instalación de cada una.</p>
+    <h4>Cómo funciona</h4><ol><li>Preguntas si existe una skill para alguna tarea</li><li>Identifica el tema y la tarea</li><li>Comprueba la clasificación de skills.sh y realiza la búsqueda (npx skills find)</li><li>Filtra por calidad: número de instalaciones, quién la publicó y estrellas</li><li>Muestra las opciones con el comando para instalar</li></ol>
+    <h4>Cómo instalar</h4><p>npx skills add vercel-labs/skills --skill find-skills. También puedes pegar el enlace en Claude Code y decir «instala esto por mí».</p><pre><span class="k">npx skills add vercel-labs/skills --skill find-skills</span></pre>
+    <h4>Ejemplo</h4><div class="exq"><p><b>Tú pides:</b> ¿Existe una skill para escribir guías en PDF?</p><p><b>Recibes:</b> Devuelve una lista de las skills encontradas, con el número de instalaciones de cada una, quién la publicó y el comando npx skills add para instalarla.</p></div>
+    <h4>Cuidado</h4><div class="exq warn"><p>Solo sugiere; tú decides si instalar. La propia skill recomienda desconfiar de skills con menos de 100 instalaciones o de repositorios pequeños.</p></div>
+    <h4>Referencia</h4><p class="refs"><a href="https://github.com/vercel-labs/skills/tree/main/skills/find-skills" target="_blank" rel="noopener">Proyecto original ↗</a></p>
+  </div>
+</article>
+<article class="sk" id="s11">
+  <figure><img src="../assets/g11-wikipedia.jpg" alt="De-AI Writing" loading="lazy"></figure>
+  <div>
+    <div class="pos">#11</div><h3>De-AI Writing</h3>
+    <div class="meta"><span>escritura</span><span>post de Reddit (sin repositorio)</span></div>
+    <h4>El problema</h4><p>Un texto que parece escrito por IA («situado en el corazón de la ciudad, testimonio de la rica herencia cultural») hace que el lector desconfíe y deje de leer.</p>
+    <h4>Qué hace</h4><p>Instrucciones publicadas en Reddit que se convierten en una skill para reescribir textos y quitarles los rasgos de escritura de IA. La base es la lista «Signs of AI writing» de Wikipedia, mantenida por WikiProject AI Cleanup. Quien quiera instalarla con un comando puede usar Humanizer (blader/humanizer), que usa la misma base.</p>
+    <h4>Cómo funciona</h4><ol><li>Copias las instrucciones de la publicación de Reddit</li><li>Las pegas en Claude y dices «convierte esto en una skill»</li><li>Le das tu texto a la skill</li><li>Cambia los rasgos de IA (palabras de moda, exceso de rayas, frases efectistas) por frases directas</li><li>Te muestra qué cambió para que puedas deshacer lo que no te guste</li></ol>
+    <h4>Cómo instalar</h4><p>No tiene repositorio: copia las instrucciones de la publicación de Reddit, pégalas en Claude y di «convierte esto en una skill». Alternativa instalable con la misma base (Humanizer): /plugin marketplace add blader/humanizer → /plugin install humanizer@humanizer.</p><pre><span class="k">claude plugin marketplace add blader/humanizer
+claude plugin install humanizer@humanizer</span></pre>
+    <h4>Ejemplo</h4><div class="exq"><p><b>Tú pides:</b> Reescribe este texto de mi cafetería para que no parezca escrito por IA: «Situado en el corazón de la ciudad, nuestro café es testimonio de la rica herencia cultural de la región».</p><p><b>Recibes:</b> Algo como «Nuestra cafetería está en la plaza principal, en un edificio que es panadería desde 1911», junto con la lista de cambios.</p></div>
+    <h4>Cuidado</h4><div class="exq warn"><p>No hay código ni repositorio para comprobar; el contenido de la publicación no se verificó aquí. La promesa de reducir la detección de IA entre un 70 y un 95 % es del autor de la publicación. El README de Humanizer, que usa la misma base, dice lo contrario: engañar a los detectores no es el objetivo y estos todavía marcan la mayor parte de su texto.</p></div>
+    <h4>Referencia</h4><p class="refs"><a href="https://www.reddit.com/r/claudeskills/comments/1wpbkmy/a_free_claude_skill_to_deai_your_written_content/" target="_blank" rel="noopener">Proyecto original ↗</a></p>
+  </div>
+</article>
+<article class="sk" id="s10">
+  <figure><img src="../assets/g10-archify.jpg" alt="Archify" loading="lazy"></figure>
+  <div>
+    <div class="pos">#10</div><h3>Archify</h3>
+    <div class="meta"><span>diagramas</span><span>85,4 mil ★ al 18/10/2026</span><span>licencia: MIT</span></div>
+    <h4>El problema</h4><p>Explicas cómo funciona una automatización, un sistema o un plan en una reunión, y el cliente solo asiente sin entender.</p>
+    <h4>Qué hace</h4><p>Convierte una descripción en una frase (o código existente) en un diagrama interactivo dentro de un único archivo HTML. Quien lo recibe puede hacer clic en cada paso, seguir rutas y ver qué ocurre después, sin instalar nada.</p>
+    <h4>Cómo funciona</h4><ol><li>Describes el proceso en una frase (no hace falta código)</li><li>El agente prepara la estructura del diagrama</li><li>Los verificadores integrados revisan y corrigen la estructura</li><li>Se genera un único archivo HTML que se abre en el navegador</li><li>Pides ajustes en la conversación: «destaca esta ruta», «tema claro»</li></ol>
+    <h4>Cómo instalar</h4><p>npx skills add tt-a1i/archify -g. También puedes pegar el enlace en Claude Code y decir «instala esto por mí».</p><pre><span class="k">npx skills add tt-a1i/archify -g</span></pre>
+    <h4>Ejemplo</h4><div class="exq"><p><b>Tú pides:</b> Usa Archify para dibujar cómo funciona mi atención al cliente: el cliente escribe por WhatsApp, el agente responde y, si no sabe, se lo pasa a una persona.</p><p><b>Recibes:</b> Un archivo HTML con el flujo dibujado; puedes hacer clic en cada paso, ver los detalles y seguir el recorrido de principio a fin.</p></div>
+    <h4>Cuidado</h4><div class="exq warn"><p>Puede consultar una dirección fija una vez al día solo para avisar de actualizaciones (se desactiva con ARCHIFY_UPDATE_CHECK_DISABLED=1). Los servicios de pago de terceros que llevan ese nombre no forman parte del proyecto.</p></div>
+    <h4>Referencia</h4><p class="refs"><a href="https://github.com/tt-a1i/archify" target="_blank" rel="noopener">Proyecto original ↗</a></p>
+  </div>
+</article>
+<article class="sk" id="s9">
+  <figure><img src="../assets/g09-nanoclaw.jpg" alt="NanoClaw" loading="lazy"></figure>
+  <div>
+    <div class="pos">#9</div><h3>NanoClaw</h3>
+    <div class="meta"><span>asistente</span><span>31 mil ★ al 18/10/2026</span><span>licencia: MIT</span></div>
+    <h4>El problema</h4><p>Tener un asistente personal de IA en el móvil sin entregar tu vida a un programa enorme que nadie entiende.</p>
+    <h4>Qué hace</h4><p>Un asistente personal con el que hablas por WhatsApp, Telegram, Slack, Discord, iMessage y otros medios. Recuerda lo que le contaste, ejecuta tareas programadas y cada agente trabaja aislado en su propio contenedor. Funciona sobre Claude Agent SDK de Anthropic.</p>
+    <h4>Cómo funciona</h4><ol><li>Descargas el proyecto y ejecutas el script de instalación</li><li>El script instala Node, pnpm y Docker si faltan, y prepara el contenedor del agente</li><li>Conectas tu primer canal (WhatsApp, Telegram, Slack...)</li><li>Envías un mensaje con la palabra de activación (por defecto: @Andy)</li><li>Responde, guarda memoria y ejecuta tareas en el horario acordado</li></ol>
+    <h4>Cómo instalar</h4><p>git clone https://github.com/nanocoai/nanoclaw.git nanoclaw-v2 → cd nanoclaw-v2 → bash nanoclaw.sh (ejecútalo en la terminal, fuera de una sesión de Claude). También puedes pegar el enlace en Claude Code y decir «instala esto por mí».</p>
+    <h4>Ejemplo</h4><div class="exq"><p><b>Tú pides:</b> @Andy cada lunes a las 8: reúne las noticias de IA de la semana y envíame un resumen.</p><p><b>Recibes:</b> Cada lunes a las 8 recibes en WhatsApp/Telegram un mensaje con el resumen de las noticias.</p></div>
+    <h4>Cuidado</h4><div class="exq warn"><p>Es un proyecto más grande que una skill: requiere Docker y que registres tus credenciales de Anthropic. La configuración envía diagnósticos anónimos (se desactiva con NANOCLAW_NO_DIAGNOSTICS=1). La historia del acuerdo con Docker, de Hacker News y de la publicación de Karpathy no aparece en el README.</p></div>
+    <h4>Referencia</h4><p class="refs"><a href="https://github.com/nanocoai/nanoclaw" target="_blank" rel="noopener">Proyecto original ↗</a></p>
+  </div>
+</article>
+<article class="sk" id="s8">
+  <figure><img src="../assets/g08-karpathy.jpg" alt="CLAUDE.md do Karpathy" loading="lazy"></figure>
+  <div>
+    <div class="pos">#8</div><h3>CLAUDE.md do Karpathy</h3>
+    <div class="meta"><span>reglas</span><span>220 mil ★ al 18/10/2026</span><span>licencia: MIT (declarada en el README; GitHub no detecta archivo de licencia)</span></div>
+    <h4>El problema</h4><p>Le pides a Claude que cambie una línea y reescribe la mitad del proyecto, además de inventarse funciones que nadie pidió.</p>
+    <h4>Qué hace</h4><p>Un único archivo CLAUDE.md con cuatro reglas, basadas en las observaciones de Andrej Karpathy sobre los errores de los modelos al programar: pensar antes de escribir código, priorizar la sencillez, hacer cambios quirúrgicos y trabajar guiándose por un objetivo.</p>
+    <h4>Cómo funciona</h4><ol><li>Pensar antes de escribir código: indicar las suposiciones y preguntar si hay dudas</li><li>Priorizar la sencillez: el mínimo código que resuelve el problema, nada más</li><li>Cambios quirúrgicos: modificar solo lo que se pidió</li><li>Trabajar guiándose por un objetivo: convertir la petición en una meta verificable (por ejemplo, una prueba que debe pasar)</li></ol>
+    <h4>Cómo instalar</h4><p>/plugin marketplace add forrestchang/andrej-karpathy-skills → /plugin install andrej-karpathy-skills@karpathy-skills (o descarga CLAUDE.md en la carpeta del proyecto: curl -o CLAUDE.md https://raw.githubusercontent.com/forrestchang/andrej-karpathy-skills/main/CLAUDE.md). También puedes pegar el enlace en Claude Code y decir «instala esto por mí».</p><pre><span class="k">claude plugin marketplace add forrestchang/andrej-karpathy-skills
+claude plugin install andrej-karpathy-skills@karpathy-skills</span></pre>
+    <h4>Ejemplo</h4><div class="exq"><p><b>Tú pides:</b> Corrige solo el error tipográfico del título de la página de inicio.</p><p><b>Recibes:</b> Claude cambia solo esa línea y no toca el resto; si tiene dudas, pregunta antes.</p></div>
+    <h4>Cuidado</h4><div class="exq warn"><p>No lo escribió Karpathy: es un archivo «inspirado» en una publicación suya, creado por otro autor (forrestchang, ahora en la organización multica-ai). El README avisa que hace que Claude sea más prudente y un poco más lento en tareas sencillas.</p></div>
+    <h4>Referencia</h4><p class="refs"><a href="https://github.com/multica-ai/andrej-karpathy-skills" target="_blank" rel="noopener">Proyecto original ↗</a></p>
+  </div>
+</article>
+<article class="sk" id="s7">
+  <figure><img src="../assets/g07-hyperframes.jpg" alt="HyperFrames" loading="lazy"></figure>
+  <div>
+    <div class="pos">#7</div><h3>HyperFrames</h3>
+    <div class="meta"><span>vídeo</span><span>66,8 mil ★ al 18/10/2026</span><span>licencia: Apache-2.0</span></div>
+    <h4>El problema</h4><p>Hacer un vídeo con título animado, música y cortes lleva una hora en un editor, y al final la duración sigue siendo incorrecta.</p>
+    <h4>Qué hace</h4><p>Herramienta de código abierto de HeyGen que convierte páginas HTML con animaciones en vídeos MP4. Describes el vídeo con palabras y el agente lo prepara, revisa y renderiza, con títulos, animaciones, vídeo de fondo y música.</p>
+    <h4>Cómo funciona</h4><ol><li>Describes el vídeo en lenguaje corriente</li><li>El agente planifica las escenas y escribe el vídeo como una página HTML</li><li>Añade animaciones, medios y música</li><li>Lo revisa y muestra una vista previa en el navegador</li><li>Lo renderiza: el navegador captura cada fotograma y FFmpeg genera el MP4</li></ol>
+    <h4>Cómo instalar</h4><p>claude plugin marketplace add heygen-com/hyperframes → claude plugin install hyperframes@hyperframes (después usa /hyperframes:hyperframes). Necesita Node.js 22+ y FFmpeg. También puedes pegar el enlace en Claude Code y decir «instala esto por mí».</p><pre><span class="k">claude plugin marketplace add heygen-com/hyperframes
+claude plugin install hyperframes@hyperframes</span></pre>
+    <h4>Ejemplo</h4><div class="exq"><p><b>Tú pides:</b> Usando /hyperframes, crea una apertura de 10 segundos para mi producto, con el título apareciendo despacio, vídeo de fondo y música suave.</p><p><b>Recibes:</b> Un archivo MP4 listo, con el título animado, el fondo y la música.</p></div>
+    <h4>Cuidado</h4><div class="exq warn"><p>Requiere tener instalados Node.js 22+ y FFmpeg. HeyGen también vende servicios de pago; HyperFrames es abierto y funciona localmente.</p></div>
+    <h4>Referencia</h4><p class="refs"><a href="https://github.com/heygen-com/hyperframes" target="_blank" rel="noopener">Proyecto original ↗</a><a href="https://inematds.github.io/explicavideos/guia/" target="_blank" rel="noopener">En INEMA: explicavideos: el motor de vídeo de INEMA (usa HyperFrames) ↗</a></p>
+  </div>
+</article>
+<article class="sk" id="s6">
+  <figure><img src="../assets/g06-pocock.jpg" alt="Skills do Matt Pocock" loading="lazy"></figure>
+  <div>
+    <div class="pos">#6</div><h3>Skills do Matt Pocock</h3>
+    <div class="meta"><span>código</span><span>296 mil ★ al 18/10/2026</span><span>licencia: MIT</span></div>
+    <h4>El problema</h4><p>Claude escribe miles de líneas en minutos y luego pasas días descubriendo qué se rompió, porque empezó antes de entender lo que querías.</p>
+    <h4>Qué hace</h4><p>El conjunto de skills que el profesor de programación Matt Pocock usa todos los días. Abordan cuatro problemas: el agente no hizo lo que querías, habla demasiado, el código no funciona y el proyecto se vuelve un caos. /grill-me hace preguntas hasta que el plan queda claro, /tdd escribe una prueba antes del código y /code-review revisa el propio trabajo.</p>
+    <h4>Cómo funciona</h4><ol><li>Instalas el paquete y ejecutas /setup-matt-pocock-skills una vez por proyecto</li><li>Antes de construir, /grill-me te hace preguntas hasta que el plan queda claro</li><li>/tdd escribe primero la prueba y luego el código para que pase</li><li>/code-review revisa el cambio antes de que lo aceptes</li><li>Otras, como /diagnosing-bugs y /improve-codebase-architecture, se ocupan de los errores y la organización</li></ol>
+    <h4>Cómo instalar</h4><p>claude plugin install mattpocock-skills@claude-plugins-official → después ejecuta /setup-matt-pocock-skills en el proyecto. También puedes pegar el enlace en Claude Code y decir «instala esto por mí».</p><pre><span class="k">claude plugin install mattpocock-skills@claude-plugins-official</span></pre>
+    <h4>Ejemplo</h4><div class="exq"><p><b>Tú pides:</b> /grill-me quiero crear una página de inscripción para mi curso.</p><p><b>Recibes:</b> En vez de ponerse a programar enseguida, Claude te hace una serie de preguntas (quién se inscribe, qué datos pedir, qué ocurre después) hasta dejar el plan cerrado.</p></div>
+    <h4>Cuidado</h4><div class="exq warn"><p>Está pensado para quienes programan: la configuración pregunta qué sistema de tareas y etiquetas usas. No lo instales a la vez desde el plugin y skills.sh, porque cada skill aparecerá dos veces.</p></div>
+    <h4>Referencia</h4><p class="refs"><a href="https://github.com/mattpocock/skills" target="_blank" rel="noopener">Proyecto original ↗</a><a href="https://inematds.github.io/trio-skills/guia/" target="_blank" rel="noopener">En INEMA: trio-skills: Pocock + Addy + pstack organizados ↗</a></p>
+  </div>
+</article>
+<article class="sk" id="s5">
+  <figure><img src="../assets/g05-careerops.jpg" alt="Career Ops" loading="lazy"></figure>
+  <div>
+    <div class="pos">#5</div><h3>Career Ops</h3>
+    <div class="meta"><span>carrera profesional</span><span>75,5 mil ★ al 18/10/2026</span><span>licencia: MIT</span></div>
+    <h4>El problema</h4><p>Enviar 50 currículums y 50 cartas para recibir dos respuestas.</p>
+    <h4>Qué hace</h4><p>Un agente de búsqueda de empleo que funciona en tu ordenador. Pegas una oferta y comprueba si sigue abierta, puntúa cuánto encajas, adapta el currículum y la carta a esa oferta y redacta las respuestas. Tú revisas y pulsas Enviar.</p>
+    <h4>Cómo funciona</h4><ol><li>Lo instalas, añades tu currículum (cv.md) y cuentas qué buscas</li><li>Pegas el enlace o el texto de una oferta (/career-ops)</li><li>Comprueba si la oferta sigue disponible</li><li>Puntúa el encaje con tu currículum y te avisa cuando no merece la pena</li><li>Genera un currículum en PDF, una carta y respuestas; tú los revisas y envías</li></ol>
+    <h4>Cómo instalar</h4><p>npx @santifer/career-ops init (crea la carpeta career-ops; después abre Claude Code dentro de ella y usa /career-ops). También puedes pegar el enlace en Claude Code y decir «instala esto por mí».</p><pre><span class="k">npx @santifer/career-ops init</span></pre>
+    <h4>Ejemplo</h4><div class="exq"><p><b>Tú pides:</b> /career-ops https://empresa.com/vagas/analista-de-dados</p><p><b>Recibes:</b> Un informe que indica si la oferta sigue abierta, la puntuación de encaje con tu currículum, un currículum en PDF adaptado y un borrador de respuestas, todo guardado en tu ordenador.</p></div>
+    <h4>Cuidado</h4><div class="exq warn"><p>Nunca envía una candidatura por su cuenta. Tu currículum se envía al proveedor de IA que uses. Las cifras (740 ofertas, 68 candidaturas, 12 entrevistas, 1 oferta) son del propio autor.</p></div>
+    <h4>Referencia</h4><p class="refs"><a href="https://github.com/career-ops-hq/career-ops" target="_blank" rel="noopener">Proyecto original ↗</a></p>
+  </div>
+</article>
+<article class="sk" id="s4">
+  <figure><img src="../assets/g04-graphify.jpg" alt="Graphify" loading="lazy"></figure>
+  <div>
+    <div class="pos">#4</div><h3>Graphify</h3>
+    <div class="meta"><span>conocimiento</span><span>128 mil ★ al 18/10/2026</span><span>licencia: Apache-2.0</span></div>
+    <h4>El problema</h4><p>Notas, PDF, capturas, vídeos y código en una misma carpeta, y nadie sabe qué relación hay entre ellos.</p>
+    <h4>Qué hace</h4><p>Escribes /graphify y lee toda la carpeta para crear un mapa (grafo de conocimiento) de cómo se relaciona cada cosa. Después, el agente consulta ese mapa en vez de volver a leer todos los archivos.</p>
+    <h4>Cómo funciona</h4><ol><li>Ejecutas /graphify . en la carpeta</li><li>El código se lee localmente, sin IA y sin salir del ordenador</li><li>Los documentos, PDF, imágenes y vídeos pasan por el modelo de tu asistente para extraer su significado</li><li>Cada relación se marca como leída directamente de la fuente o deducida</li><li>Se generan tres archivos: el mapa interactivo (graph.html), un informe y el grafo completo para consultas</li></ol>
+    <h4>Cómo instalar</h4><p>uv tool install graphifyy → graphify install (detecta el asistente y registra la skill) → en Claude Code: /graphify . — necesita Python 3.10+ y uv (o pipx). También puedes pegar el enlace en Claude Code y decir «instala esto por mí».</p><pre><span class="k">uv tool install graphifyy
+graphify install</span></pre>
+    <h4>Ejemplo</h4><div class="exq"><p><b>Tú pides:</b> /graphify . y luego dime cómo se conecta el módulo de pagos con el de correos.</p><p><b>Recibes:</b> Un mapa interactivo en el navegador y una respuesta con la ruta entre los dos módulos y los archivos implicados.</p></div>
+    <h4>Cuidado</h4><div class="exq warn"><p>Atención al nombre del paquete: graphifyy (con dos y). Los archivos que no son código usan el modelo del asistente (consume uso). El «80 % menos tokens» del README corresponde a la versión de pago (Graphify Cloud). La duda sobre las estrellas y el «75 % menos tokens» proviene de comentarios citados en el vídeo, no del README.</p></div>
+    <h4>Referencia</h4><p class="refs"><a href="https://github.com/Graphify-Labs/graphify" target="_blank" rel="noopener">Proyecto original ↗</a></p>
+  </div>
+</article>
+<article class="sk" id="s3">
+  <figure><img src="../assets/g03-cloner.jpg" alt="AI Website Cloner" loading="lazy"></figure>
+  <div>
+    <div class="pos">#3</div><h3>AI Website Cloner</h3>
+    <div class="meta"><span>web</span><span>37 mil ★ al 18/10/2026</span><span>licencia: MIT</span></div>
+    <h4>El problema</h4><p>Rehacer un sitio web (tipografías, colores, diseño) puede llevarle días a un diseñador o desarrollador.</p>
+    <h4>Qué hace</h4><p>Un proyecto modelo con la skill /clone-website: le das la dirección y el agente reconstruye el sitio como una aplicación Next.js limpia y editable, con las mismas tipografías, colores y estructura. Parte del sitio real, no de una captura.</p>
+    <h4>Cómo funciona</h4><ol><li>Mapear: relaciona las páginas del sitio original con las del proyecto</li><li>Observar: examina el sitio en el ordenador y el móvil, y extrae imágenes y tipografías reales</li><li>Construir: crea los componentes y las interacciones</li><li>Comparar: coloca el original y la copia uno junto al otro, corrige las diferencias y ejecuta la comprobación final</li></ol>
+    <h4>Cómo instalar</h4><p>Pega en Claude Code: «Set up https://github.com/JCodesMore/ai-website-cloner-template as a standalone project in a new folder on my computer...» (prompt del README) y después, dentro del proyecto: /clone-website https://seusite.com. Necesita Node.js 24+.</p>
+    <h4>Ejemplo</h4><div class="exq"><p><b>Tú pides:</b> /clone-website https://meusite-antigo.com.br</p><p><b>Recibes:</b> Un proyecto Next.js con el sitio reconstruido, capturas que comparan el original y la copia, y una lista de lo que aún es diferente.</p></div>
+    <h4>Cuidado</h4><div class="exq warn"><p>Clona solo sitios tuyos o para los que tengas permiso. El README prohíbe las estafas (phishing), hacerse pasar por otra marca y copiar diseños ajenos como propios; los logotipos y textos pertenecen a sus dueños.</p></div>
+    <h4>Referencia</h4><p class="refs"><a href="https://github.com/JCodesMore/ai-website-cloner-template" target="_blank" rel="noopener">Proyecto original ↗</a></p>
+  </div>
+</article>
+<article class="sk" id="s2">
+  <figure><img src="../assets/g02-anatomy-readme.jpg" alt="Anatomy" loading="lazy"></figure>
+  <div>
+    <div class="pos">#2</div><h3>Anatomy</h3>
+    <div class="meta"><span>visual</span><span>16,1 mil ★ al 18/10/2026</span><span>licencia: MIT</span></div>
+    <h4>El problema</h4><p>Preguntas cómo funciona algo y recibes un bloque enorme de texto; vuelves a preguntar y el bloque crece.</p>
+    <h4>Qué hace</h4><p>En vez de explicarlo con texto, construye un objeto ilustrado e interactivo (vista isométrica) cuyo funcionamiento muestra la idea. Puedes moverlo con el ratón, acercarte y desmontarlo pieza por pieza en el navegador. Ejemplo de la galería: el motor de cohete Raptor de SpaceX, que se enciende y luego se desmonta en 11 partes.</p>
+    <h4>Cómo funciona</h4><ol><li>Pides /anatomy y haces tu pregunta</li><li>Claude inventa un objeto físico que muestra la idea en funcionamiento</li><li>Construye el objeto con decenas de piezas pequeñas y sombreadas, en una tarjeta con título y lectura en directo</li><li>Revisa su propio trabajo ampliando cada unión</li><li>Entrega una página HTML (o SVG) que abres y exploras en el navegador</li></ol>
+    <h4>Cómo instalar</h4><p>npx skills add wheresryan22/anatomy -g -a claude-code (después: /anatomy y la pregunta). También puedes pegar el enlace en Claude Code y decir «instala esto por mí».</p><pre><span class="k">npx skills add wheresryan22/anatomy -g -a claude-code</span></pre>
+    <h4>Ejemplo</h4><div class="exq"><p><b>Tú pides:</b> /anatomy explica de forma interactiva cómo funciona un limitador de solicitudes.</p><p><b>Recibes:</b> Una página en el navegador con una máquina ilustrada que muestra el mecanismo; pasas el ratón por encima y se mueve y muestra los números.</p></div>
+    <h4>Cuidado</h4><div class="exq warn"><p>Es lento a propósito: cada figura requiere una sesión larga (el Raptor tarda unos minutos). Dibuja máquinas, instrumentos y objetos, no personas ni mapas exactos. El modo 3D aún está en beta.</p></div>
+    <h4>Referencia</h4><p class="refs"><a href="https://github.com/wheresryan22/anatomy" target="_blank" rel="noopener">Proyecto original ↗</a></p>
+  </div>
+</article>
+<article class="sk" id="s1">
+  <figure><img src="../assets/g01-rea.jpg" alt="REA (Reverse Engineer Anything)" loading="lazy"></figure>
+  <div>
+    <div class="pos">#1</div><h3>REA (Reverse Engineer Anything)</h3>
+    <div class="meta"><span>ingeniería inversa</span><span>323 mil ★ al 18/10/2026</span><span>licencia: MIT</span></div>
+    <h4>El problema</h4><p>Ves una función en la aplicación de otra persona y la quieres en la tuya, pero no tienes el código, así que improvisas y te equivocas.</p>
+    <h4>Qué hace</h4><p>Conecta tu agente con herramientas que examinan una aplicación terminada sin necesitar el código fuente. El agente descubre cómo funciona la función, muestra pruebas de cada conclusión y construye una versión parecida en tu proyecto.</p>
+    <h4>Cómo funciona</h4><ol><li>Ejecutas la configuración, que conecta REA con tu agente (vía MCP)</li><li>Pides que investigue una función de una aplicación</li><li>REA examina la aplicación (programas nativos, apps JavaScript/Electron, .NET y sitios web) en tu ordenador</li><li>Devuelve lo que encontró, con pruebas y lo que quedó sin respuesta</li><li>El agente explica cómo funciona y escribe y prueba una versión en tu proyecto</li></ol>
+    <h4>Cómo instalar</h4><p>npx rea-agents setup (elige Claude Code, aprueba los cambios y reinicia el agente). También puedes pegar el enlace en Claude Code y decir «instala esto por mí».</p><pre><span class="k">npx rea-agents setup</span></pre>
+    <h4>Ejemplo</h4><div class="exq"><p><b>Tú pides:</b> Entiende cómo funciona la búsqueda en la app de Notas, muéstrame las pruebas y construye algo parecido en mi proyecto.</p><p><b>Recibes:</b> Una explicación de cómo funciona la búsqueda por dentro, con los fragmentos y referencias que prueban cada punto, y una versión parecida implementada y probada en tu proyecto.</p></div>
+    <h4>Cuidado</h4><div class="exq warn"><p>Solo para software tuyo o que tengas autorización para examinar (investigación, enseñanza o compatibilidad); el README pide un uso legal. Analizar programas nativos puede requerir herramientas como Hopper, Ghidra o IDA, y las versiones comerciales necesitan licencia. Descarga solo de fuentes oficiales (morluto/rea, rea.tools y el paquete npm rea-agents).</p></div>
+    <h4>Referencia</h4><p class="refs"><a href="https://github.com/morluto/rea" target="_blank" rel="noopener">Proyecto original ↗</a><a href="https://inematds.github.io/rea-engenharia-reversa/guia/" target="_blank" rel="noopener">En INEMA: Guía completa de REA en INEMA (pruebas reales, vídeos) ↗</a></p>
+  </div>
+</article>
+</div></section>
+<section id="guia"><div class="wrap"><span class="chip">Instalar</span><h2>Una forma para todas</h2><p class="sub">Funciona con cualquiera de las 15.</p><div class="step"><div class="b">1</div><div><h3>Copia el enlace y pide</h3><p>Pega el enlace del repositorio en Claude Code y di: instálame esto. Lee el README y hace el resto.</p></div></div><div class="step"><div class="b">2</div><div><h3>O usa el instalador de este repo</h3><p>Solo muestra los comandos oficiales; los ejecuta únicamente con --executar.</p><pre>git clone https://github.com/inematds/skills15.git &amp;&amp; cd skills15
+./scripts/instalar.sh          # lista las 15
+./scripts/instalar.sh 12       # muestra cómo instalar la #12
+./scripts/instalar.sh 12 --executar</pre></div></div><div class="step"><div class="b">3</div><div><h3>Pruébala en una tarea real</h3><p>Haz la misma tarea con y sin la skill. ¿No mejoró? Desinstálala.</p></div></div></div></section>
+
+<footer><div class="wrap">
+  <div class="pill">Claude Code</div><div class="pill">Agent Skills</div><div class="pill">15 skills</div>
+  <p style="margin-top:18px">skills15 · catálogo gratis · textos MIT, cada skill con la licencia de su proyecto original · <a href="https://github.com/inematds/skills15">inematds/skills15</a> · <a href="https://inema.club">INEMA.CLUB</a></p>
+</div></footer>
+<script>
+(function(){var KEY='skills15-theme',b=document.body,t=document.getElementById('themeToggle');
+try{if(localStorage.getItem(KEY)==='light'){b.classList.add('light');t.textContent='☀️';}}catch(e){}
+t.addEventListener('click',function(){var l=b.classList.toggle('light');t.textContent=l?'☀️':'🌙';try{localStorage.setItem(KEY,l?'light':'dark');}catch(e){}});})();
+</script>
+</body>
+</html>
